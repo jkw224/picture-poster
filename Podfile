@@ -5,6 +5,7 @@ use_frameworks!
 target 'picture-poster' do
 
 pod 'Firebase', '>= 2.4.0'
+pod 'Alamofire', '~> 3.0'
 
 # Facebook 4.6.0 SDK -- need following 3 pods
 # https://github.com/facebook/facebook-ios-sdk

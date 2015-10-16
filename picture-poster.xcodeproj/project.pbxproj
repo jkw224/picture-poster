@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4BE0F3684575766DECB4F70F /* Pods_picture_poster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BC4A2FD9BCEEB0D01CCCC74 /* Pods_picture_poster.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		4BE0F3684575766DECB4F70F /* Pods_picture_poster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BC4A2FD9BCEEB0D01CCCC74 /* Pods_picture_poster.framework */; };
 		FB0C95D71BBC4A940021ADFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0C95D61BBC4A940021ADFF /* AppDelegate.swift */; };
 		FB0C95D91BBC4A940021ADFF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0C95D81BBC4A940021ADFF /* ViewController.swift */; };
 		FB0C95DC1BBC4A940021ADFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB0C95DA1BBC4A940021ADFF /* Main.storyboard */; };
@@ -21,6 +21,10 @@
 		FB0C95F81BBC573A0021ADFF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0C95F71BBC573A0021ADFF /* Constants.swift */; settings = {ASSET_TAGS = (); }; };
 		FB0C95FA1BBC78EA0021ADFF /* MaterialBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0C95F91BBC78EA0021ADFF /* MaterialBtn.swift */; settings = {ASSET_TAGS = (); }; };
 		FB0C95FC1BBC84590021ADFF /* MaterialTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0C95FB1BBC84590021ADFF /* MaterialTextField.swift */; settings = {ASSET_TAGS = (); }; };
+		FB4B25491BCF536800110B89 /* post.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4B25481BCF536800110B89 /* post.swift */; settings = {ASSET_TAGS = (); }; };
+		FBB241081BBDE45400A7A7E8 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB241071BBDE45400A7A7E8 /* DataService.swift */; settings = {ASSET_TAGS = (); }; };
+		FBB2410C1BC068D900A7A7E8 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB2410B1BC068D900A7A7E8 /* FeedVC.swift */; settings = {ASSET_TAGS = (); }; };
+		FBB2410E1BC2259500A7A7E8 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB2410D1BC2259500A7A7E8 /* FeedCell.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +46,10 @@
 		FB0C95F71BBC573A0021ADFF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FB0C95F91BBC78EA0021ADFF /* MaterialBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialBtn.swift; sourceTree = "<group>"; };
 		FB0C95FB1BBC84590021ADFF /* MaterialTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialTextField.swift; sourceTree = "<group>"; };
+		FB4B25481BCF536800110B89 /* post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = post.swift; sourceTree = "<group>"; };
+		FBB241071BBDE45400A7A7E8 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		FBB2410B1BC068D900A7A7E8 /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
+		FBB2410D1BC2259500A7A7E8 /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +105,7 @@
 				FB0C95EA1BBC4AC30021ADFF /* model */,
 				FB0C95E91BBC4ABD0021ADFF /* view */,
 				FB0C95E81BBC4AAB0021ADFF /* controller */,
+				FBB241061BBDE41B00A7A7E8 /* services */,
 				FB0C95EC1BBC4AFE0021ADFF /* util */,
 				FB0C95EB1BBC4AD90021ADFF /* resources */,
 				FB0C95D61BBC4A940021ADFF /* AppDelegate.swift */,
@@ -112,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				FB0C95D81BBC4A940021ADFF /* ViewController.swift */,
+				FBB2410B1BC068D900A7A7E8 /* FeedVC.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -122,6 +132,7 @@
 				FB0C95F51BBC56B70021ADFF /* MaterialView.swift */,
 				FB0C95F91BBC78EA0021ADFF /* MaterialBtn.swift */,
 				FB0C95FB1BBC84590021ADFF /* MaterialTextField.swift */,
+				FBB2410D1BC2259500A7A7E8 /* FeedCell.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -129,6 +140,7 @@
 		FB0C95EA1BBC4AC30021ADFF /* model */ = {
 			isa = PBXGroup;
 			children = (
+				FB4B25481BCF536800110B89 /* post.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -150,6 +162,14 @@
 				FB0C95F71BBC573A0021ADFF /* Constants.swift */,
 			);
 			name = util;
+			sourceTree = "<group>";
+		};
+		FBB241061BBDE41B00A7A7E8 /* services */ = {
+			isa = PBXGroup;
+			children = (
+				FBB241071BBDE45400A7A7E8 /* DataService.swift */,
+			);
+			name = services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,11 +298,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB0C95FC1BBC84590021ADFF /* MaterialTextField.swift in Sources */,
+				FB4B25491BCF536800110B89 /* post.swift in Sources */,
 				FB0C95F61BBC56B70021ADFF /* MaterialView.swift in Sources */,
 				FB0C95D91BBC4A940021ADFF /* ViewController.swift in Sources */,
 				FB0C95D71BBC4A940021ADFF /* AppDelegate.swift in Sources */,
+				FBB2410C1BC068D900A7A7E8 /* FeedVC.swift in Sources */,
 				FB0C95F81BBC573A0021ADFF /* Constants.swift in Sources */,
 				FB0C95FA1BBC78EA0021ADFF /* MaterialBtn.swift in Sources */,
+				FBB241081BBDE45400A7A7E8 /* DataService.swift in Sources */,
+				FBB2410E1BC2259500A7A7E8 /* FeedCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
