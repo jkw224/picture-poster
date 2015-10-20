@@ -17,7 +17,7 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var likesLbl: UILabel!
     
     var post: Post!
-    var request: Request!
+    var request: Request?
     
     override func awakeFromNib() {
         super.awakeFromNib()
