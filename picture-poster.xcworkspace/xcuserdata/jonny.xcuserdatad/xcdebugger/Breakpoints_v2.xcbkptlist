@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "picture-poster/ViewController.swift"
-            timestampString = "466549021.109828"
+            filePath = "picture-poster/FeedCell.swift"
+            timestampString = "467056909.100058"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
-            landmarkName = "attemptLogin(_:)"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "configureCell(_:img:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
