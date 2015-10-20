@@ -18,6 +18,8 @@
             <string>NotoSans</string>
             <string>NotoSans</string>
             <string>NotoSans</string>
+            <string>NotoSans</string>
+            <string>NotoSans</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -204,13 +206,75 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="361" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ogh-ld-lJ0">
-                                <rect key="frame" x="20" y="64" width="560" height="536"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Db1-Rf-w9f" customClass="MaterialView" customModule="picture_poster" customModuleProvider="target">
+                                <rect key="frame" x="20" y="79" width="560" height="47"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YaZ-kq-tez">
+                                        <rect key="frame" x="8" y="8" width="544" height="31"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Talk about your app" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Re-m5-BW2" customClass="MaterialTextField" customModule="picture_poster" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="443" height="31"/>
+                                                <animations/>
+                                                <color key="backgroundColor" red="0.81176470590000005" green="0.84705882349999995" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name="NotoSans" family="Noto Sans" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" translatesAutoresizingMaskIntoConstraints="NO" id="R2v-gg-kbK">
+                                                <rect key="frame" x="453" y="0.0" width="31" height="31"/>
+                                                <animations/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="31" id="NtT-ay-36a"/>
+                                                    <constraint firstAttribute="width" constant="30" id="SFf-pj-alb"/>
+                                                    <constraint firstAttribute="height" constant="29" id="kWr-lm-JdJ"/>
+                                                </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="SFf-pj-alb"/>
+                                                        <exclude reference="kWr-lm-JdJ"/>
+                                                    </mask>
+                                                </variation>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="iCg-1d-pQV" appends="YES" id="KRj-3F-6B3"/>
+                                                </connections>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wsG-YJ-ytf" customClass="MaterialBtn" customModule="picture_poster" customModuleProvider="target">
+                                                <rect key="frame" x="494" y="0.0" width="50" height="31"/>
+                                                <animations/>
+                                                <color key="backgroundColor" red="0.0" green="0.70588235294117641" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="XyS-YQ-gkf"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="NotoSans" family="Noto Sans" pointSize="14"/>
+                                                <state key="normal" title="POST">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="makePost:" destination="YEL-g5-Q84" eventType="touchUpInside" id="2x8-tq-hFV"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <animations/>
+                                    </stackView>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="YaZ-kq-tez" secondAttribute="bottom" constant="8" id="9S3-wL-CeP"/>
+                                    <constraint firstItem="YaZ-kq-tez" firstAttribute="leading" secondItem="Db1-Rf-w9f" secondAttribute="leading" constant="8" id="ZPI-Dh-gWS"/>
+                                    <constraint firstAttribute="trailing" secondItem="YaZ-kq-tez" secondAttribute="trailing" constant="8" id="e6o-U6-23v"/>
+                                    <constraint firstItem="YaZ-kq-tez" firstAttribute="top" secondItem="Db1-Rf-w9f" secondAttribute="top" constant="8" id="jNx-zc-7hG"/>
+                                    <constraint firstAttribute="height" constant="47" id="sQi-1y-MDa"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="361" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ogh-ld-lJ0">
+                                <rect key="frame" x="20" y="125" width="560" height="536"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.81176470590000005" green="0.84705882349999995" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="361" id="BP3-U1-ULG" userLabel="FeedCell" customClass="FeedCell" customModule="picture_poster" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="560" height="361"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="361" id="BP3-U1-ULG" userLabel="FeedCell" customClass="FeedCell" customModule="picture_poster" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="560" height="361"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BP3-U1-ULG" id="1Jp-RO-L0o">
                                             <rect key="frame" x="0.0" y="0.0" width="560" height="361"/>
@@ -316,7 +380,7 @@
                                             <outlet property="descriptionText" destination="sgM-ax-13Y" id="9O5-bj-0kW"/>
                                             <outlet property="likesLbl" destination="fIW-E9-sCz" id="zUb-0k-cWB"/>
                                             <outlet property="profileImg" destination="Mu3-Ia-o5U" id="OQL-hA-1VK"/>
-                                            <outlet property="showCaseImg" destination="cb5-TQ-tty" id="vO5-CG-sMR"/>
+                                            <outlet property="showcaseImg" destination="cb5-TQ-tty" id="jhp-KK-6yO"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -326,17 +390,33 @@
                         <color key="backgroundColor" red="0.81176470590000005" green="0.84705882349999995" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Ogh-ld-lJ0" firstAttribute="top" secondItem="nF4-Xb-rhW" secondAttribute="bottom" id="1BG-kr-wCM"/>
+                            <constraint firstItem="Ogh-ld-lJ0" firstAttribute="top" secondItem="Db1-Rf-w9f" secondAttribute="bottom" constant="8" id="LPQ-zO-9ug"/>
+                            <constraint firstItem="Db1-Rf-w9f" firstAttribute="top" secondItem="nF4-Xb-rhW" secondAttribute="bottom" constant="15" id="YJr-P8-c6k"/>
                             <constraint firstItem="Ogh-ld-lJ0" firstAttribute="trailing" secondItem="88i-eR-FPT" secondAttribute="trailingMargin" id="hqG-Uq-5An"/>
                             <constraint firstItem="Ogh-ld-lJ0" firstAttribute="leading" secondItem="88i-eR-FPT" secondAttribute="leadingMargin" id="jxD-He-WuK"/>
+                            <constraint firstItem="Db1-Rf-w9f" firstAttribute="trailing" secondItem="88i-eR-FPT" secondAttribute="trailingMargin" id="lfe-sb-Hwe"/>
                             <constraint firstItem="dky-jm-wuo" firstAttribute="top" secondItem="Ogh-ld-lJ0" secondAttribute="bottom" id="nTt-j2-lO2"/>
+                            <constraint firstItem="Db1-Rf-w9f" firstAttribute="leading" secondItem="88i-eR-FPT" secondAttribute="leadingMargin" id="w0G-YR-So2"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="1BG-kr-wCM"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="czF-Wz-xgJ"/>
                     <connections>
+                        <outlet property="postField" destination="0Re-m5-BW2" id="pN8-QW-PeM"/>
                         <outlet property="tableView" destination="Ogh-ld-lJ0" id="86U-ay-ZWT"/>
+                        <outlet property="uploadImage" destination="R2v-gg-kbK" id="rxb-Xa-9wg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Htp-2c-eMh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="iCg-1d-pQV">
+                    <connections>
+                        <action selector="selectImage:" destination="YEL-g5-Q84" id="rL6-9J-Jor"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2101" y="490"/>
         </scene>
@@ -383,6 +463,7 @@
     <resources>
         <image name="FB-f-Logo__blue_144" width="144" height="144"/>
         <image name="Simulator Screen Shot Aug 13, 2015, 6.37.33 PM" width="300" height="534"/>
+        <image name="camera" width="50" height="50"/>
         <image name="dads-rooster" width="2885" height="2359"/>
         <image name="heart-empty" width="150" height="147"/>
     </resources>
