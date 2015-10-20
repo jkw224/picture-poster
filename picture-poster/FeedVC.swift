@@ -17,6 +17,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     @IBOutlet weak var uploadImage: UIImageView!
     
     var posts = [Post]()
+    var imageSelected = false
     static var imageCache = NSCache()
     var imagePicker: UIImagePickerController!
     
@@ -78,6 +79,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             
             cell.configureCell(post, img: img)
             return cell
+            
         } else {
             return FeedCell()
         }
@@ -100,6 +102,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
         uploadImage.image = image
+        imageSelected = true
     }
 
     @IBAction func selectImage(sender: UITapGestureRecognizer) {
@@ -110,7 +113,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         
         if let txt = postField.text where txt != "" {
          
-            if let img = uploadImage.image {
+            if let img = uploadImage.image where uploadImage == true {
                 let urlStr = "https://post.imageshack.us/upload_api.php"
                 let url = NSURL(string: urlStr)!
                 let imgData = UIImageJPEGRepresentation(img, 0.2)! //compress image into JPEG!! Alamo fire requires JPEG
@@ -128,13 +131,14 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                     
                         switch encodingResult {
                         case .Success(let upload, _, _):
-                            upload.responseJSON(completionHandler: { request, response, result in
+                            upload.responseJSON(completionHandler: { response in
                                 
-                                if let info = result.value as? Dictionary<String, AnyObject> {
+                                if let info = response.result.value as? Dictionary<String, AnyObject> {
                                     
                                     if let links = info["links"] as? Dictionary<String, AnyObject> {
                                         if let imgLink = links["image_link"] as? String {
-                                            
+                                            print("Link \(imgLink)")
+                                            self.postToFirebase(imgLink)
                                         }
                                     }
                                     
@@ -143,13 +147,32 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                             })
                         case .Failure(let error):
                             print(error)
-                        
-                    }
+                        }
                     
-                }
+                    }
+            } else {
+                self.postToFirebase(nil)
             }
         }
-        
     }
     
+    func postToFirebase(imgUrl: String?){
+        var post: Dictionary <String, AnyObject> = [
+            "description": postField.text!,
+            "likes": 0,
+        ]
+        
+        if imgUrl != nil {
+            post["imgUrl"] = imgUrl
+        }
+        
+        let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
+        firebasePost.setValue(post)
+        
+        postField.text = ""
+        uploadImage.image = UIImage(named: "camera")
+        imageSelected = false
+        
+        tableView.reloadData()
+    }
 }

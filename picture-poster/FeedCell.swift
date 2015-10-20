@@ -54,6 +54,8 @@ class FeedCell: UITableViewCell {
                         let img = UIImage(data: data!)!
                         self.showcaseImg.image = img
                         FeedVC.imageCache.setObject(img, forKey: self.post.imageUrl!)
+                    } else {
+                        print(err.debugDescription)
                     }
                     
                 })
