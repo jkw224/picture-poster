@@ -45,15 +45,30 @@ class FeedCell: UITableViewCell {
         
         if post.imageUrl != nil {
             
+            // An image is already cached in memory, hence img != nil
             if img != nil {
                 self.showcaseImg.image = img
             } else {
+                // Request image URL from Firebase
                 request = Alamofire.request(.GET, post.imageUrl!).validate(contentType: ["image/*"]).response(completionHandler: { request, response, data, err in
+                    print("Alamofire \"data\" returned from Firebase:\n\n \(data)")
                     
+                    // If there are no errors in the request
                     if err == nil {
-                        let img = UIImage(data: data!)!
-                        self.showcaseImg.image = img
-                        FeedVC.imageCache.setObject(img, forKey: self.post.imageUrl!)
+                        
+                        print("\n\n img (after Alamofire call) = \(img)")
+                        
+                        // If img != nil (after Alamofire request)
+                        if img != nil {
+                            // Alamofire "data" returns just a bunch of numbers (in bytes)
+                            let img = UIImage(data: data!)!
+                            self.showcaseImg.image = img
+                            FeedVC.imageCache.setObject(img, forKey: self.post.imageUrl!)
+                        } else {
+                            print("Could not get image from Alamofire request: img = nil.")
+                        }
+                        
+                        
                     } else {
                         print(err.debugDescription)
                     }

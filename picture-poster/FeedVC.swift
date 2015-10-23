@@ -32,13 +32,13 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         imagePicker.delegate = self
         
         DataService.ds.REF_POSTS.observeEventType(.Value, withBlock: { snapshot in
-            print(snapshot.value)
+            // print(snapshot.value)
             
             self.posts = []
             if let snapshots = snapshot.children.allObjects as? [FDataSnapshot] {
                 
                 for snap in snapshots {
-                    print("SNAP: \(snap)")
+                    // print("SNAP: \(snap)")
                     
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
                         let key = snap.key
@@ -66,6 +66,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let post = posts[indexPath.row]
+        // print("Image URL: \(post.imageUrl)")
         
         if let cell = tableView.dequeueReusableCellWithIdentifier("FeedCell") as? FeedCell {
             
@@ -73,6 +74,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             
             var img: UIImage?
             
+            // print("Image URL(in dequeReusableCell): \(post.imageUrl)")
             if let url = post.imageUrl {
                 img = FeedVC.imageCache.objectForKey(url) as? UIImage
             }
