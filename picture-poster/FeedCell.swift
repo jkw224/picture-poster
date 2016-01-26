@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import Firebase
 
 class FeedCell: UITableViewCell {
 
@@ -15,13 +16,20 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var showcaseImg: UIImageView!
     @IBOutlet weak var descriptionText: UITextView!
     @IBOutlet weak var likesLbl: UILabel!
+    @IBOutlet weak var likeImg: UIImageView!
     
     var post: Post!
     var request: Request?
+    var likeRef: Firebase!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        //likeTapped is function that is going to be called -- see below
+        let tap = UITapGestureRecognizer(target: self, action: "likeTapped:")
+        tap.numberOfTapsRequired = 1
+        likeImg.addGestureRecognizer(tap)
+        likeImg.userInteractionEnabled = true
     }
     
     override func drawRect(rect: CGRect) {
@@ -40,6 +48,8 @@ class FeedCell: UITableViewCell {
     func configureCell(post: Post, img: UIImage?) {
         self.post = post
         
+        let likeRef = DataService.ds.REF_USER_CURRENT.childByAppendingPath("likes").childByAppendingPath(post.postKey)
+        
         self.descriptionText.text = post.postDescription
         self.likesLbl.text = "\(post.likes)"
         
@@ -51,28 +61,44 @@ class FeedCell: UITableViewCell {
             } else {
                 // Request image URL from Firebase
                 request = Alamofire.request(.GET, post.imageUrl!).validate(contentType: ["image/*"]).response(completionHandler: { request, response, data, err in
-                    print("Alamofire \"data\" returned from Firebase:\n\n \(data)")
                     
                     // If there are no errors in the request
                     if err == nil {
                         
                         print("\n\n img (after Alamofire call) = \(img)")
                         
-                        // If img != nil (after Alamofire request)
-                        if img != nil {
-                            // Alamofire "data" returns just a bunch of numbers (in bytes)
-                            let img = UIImage(data: data!)!
-                            self.showcaseImg.image = img
-                            FeedVC.imageCache.setObject(img, forKey: self.post.imageUrl!)
-                        } else {
-                            print("Could not get image from Alamofire request: img = nil.")
-                        }
+                        // If img == nil (after Alamofire request)
+
+                        
+// The following code should be implimented...
+//                        if data != nil {
+//                            // Alamofire "data" returns just a bunch of numbers (in bytes)
+//                            // Try printing new img variable
+//                            let img = UIImage(data: data!)! // change to unwrap
+//                            print("\n\n UIImage:data >>>> \(img)")
+//                            
+//                            self.showcaseImg.image = img
+//                            FeedVC.imageCache.setObject(img, forKey: self.post.imageUrl!)
+//                        } else {
+//                            print("Could not get image from Alamofire request: img = nil.")
+//                        }
                         
                         
                     } else {
                         print(err.debugDescription)
                     }
                     
+                    
+                    likeRef.observeSingleEventOfType(.Value, withBlock: {snapshot in
+                        
+                        if let doesNotExist = snapshot.value as? NSNull {
+                            // Have not liked this specific post
+                            self.likeImg.image = UIImage(named: "heart-empty")
+                        } else {
+                            self.likeImg.image = UIImage(named: "heart-full")
+                        }
+                        
+                    })
                 })
             }
             
@@ -80,5 +106,24 @@ class FeedCell: UITableViewCell {
             self.showcaseImg.hidden = true
         }
         
+    }
+    
+    func likeTapped(sender: UITapGestureRecognizer) {
+        likeRef.observeSingleEventOfType(.Value, withBlock: {snapshot in
+        
+            if let doesNotExist = snapshot.value as? NSNull {
+            // Have not liked this specific post
+                self.likeImg.image = UIImage(named: "heart-full")
+                // increments/decrements likes and assigns to Firebase
+                self.post.adjustLikes(true)
+                self.likeRef.setValue(true)
+            } else {
+                self.likeImg.image = UIImage(named: "heart-empty")
+                self.post.adjustLikes(false)
+                self.likeRef.removeValue()
+            }
+        
+        })
+    
     }
 }
